@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manoj Motapalukula | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Design System Variables */
+        :root {
+            --bg-body: #ffffff;
+            --bg-surface: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --border: #e2e8f0;
+            --max-width: 860px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Base Resets & Framework */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.7;
+            padding: 0 1.5rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        /* Header Navigation Block */
+        header {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 5rem;
+        }
+
+        .nav-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero / About Profile Frame */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .hero h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Interactive Circular Profile Image Wrapper */
+        .profile-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-body);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--border);
+            background-color: var(--bg-surface);
+            transition: var(--transition);
+        }
+
+        .profile-container:hover .profile-pic {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 30px -10px rgba(37, 99, 235, 0.2), 0 0 0 1px var(--primary);
+        }
+
+        /* Section Global Typography Layouts */
+        section {
+            margin-bottom: 5rem;
+            scroll-margin-top: 4rem;
+        }
+
+        section h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        section h3::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: var(--border);
+        }
+
+        /* Dynamic Grid Layout for Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-group {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .skill-group:hover {
+            border-color: var(--primary);
+            background-color: var(--bg-body);
+            box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.04);
+        }
+
+        .skill-group h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-group h4 i {
+            color: var(--primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background-color: #ffffff;
+            border: 1px solid var(--border);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        /* NEW NEW: Professional Experience Section Layout */
+        .experience-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .job-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--border);
+            border-radius: 0 12px 12px 0;
+            padding: 1.75rem;
+            transition: var(--transition);
+        }
+
+        .job-card:hover {
+            border-left-color: var(--primary);
+            background: var(--bg-body);
+            box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.05);
+            transform: translateX(4px);
+        }
+
+        .job-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-meta-left h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .job-meta-left .company-name {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-block;
+            margin-top: 0.15rem;
+        }
+
+        .job-meta-right {
+            text-align: right;
+        }
+
+        .job-badge-time {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-main);
+            background-color: rgba(37, 99, 235, 0.08);
+            padding: 0.35rem 0.75rem;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        .job-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.35rem;
+            font-weight: 500;
+        }
+
+        .job-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-bullets li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0.25rem;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* NEW NEW: Education & Credentials Card Showcase Layout */
+        .credentials-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .media-card {
+            display: flex;
+            gap: 1.75rem;
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .media-card:hover {
+            border-color: var(--border);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .media-card-img-box {
+            width: 90px;
+            height: 90px;
+            border-radius: 10px;
+            object-fit: contain;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+            padding: 0.5rem;
+        }
+
+        .media-card-content {
+            flex: 1;
+        }
+
+        .media-card-content h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
+        }
+
+        .media-card-sub {
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .media-card-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .cert-inline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .cert-mini-tag {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Contact Block Components */
+        .contact-row {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-muted);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .contact-btn:hover {
+            color: #ffffff;
+            background-color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px -6px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Footer Architecture */
+        footer {
+            text-align: center;
+            padding: 4rem 0 3rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 5rem;
+        }
+
+        /* Fluid Mobile Breakpoints Adaptation */
+        @media (max-width: 768px) {
+            header {
+                margin-bottom: 3.5rem;
+                padding: 1.5rem 0;
+            }
+            .nav-box {
+                flex-direction: column;
+                gap: 1.25rem;
+                text-align: center;
+            }
+            .hero {
+                flex-direction: column-reverse;
+                gap: 2rem;
+                text-align: center;
+                margin-bottom: 4.5rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .profile-pic {
+                width: 140px;
+                height: 140px;
+            }
+            .job-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .job-meta-right {
+                text-align: left;
+                margin-top: 0.25rem;
+            }
+            .media-card {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .media-card-img-box {
+                width: 70px;
+                height: 70px;
+            }
+            .contact-row {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="container">
+        <nav class="nav-box">
+            <div class="logo">Manoj<span> Motapalukula</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <section id="about" class="hero">
+            <div class="hero-text">
+                <h1>Manoj Motapalukula</h1>
+                <h2>Python Developer & Data Engineer</h2> 
+                <p style="margin-bottom: 1rem;">
+                    Computer Science graduate specializing in bridging the gap between scalable backend application architecture and complex data infrastructure.
+                </p>
+                <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.98rem;">
+                    <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text-main);">• Software:</strong> Building data-driven web tools, process automation dashboards, and modular backend configurations using Python, Shiny, and Flask.</li>
+                    <li><strong style="color: var(--text-main);">• Data:</strong> Designing fault-tolerant pipelines, optimizing query storage layers, and deploying cloud analytics architectures using BigQuery, GCP, and Hadoop.</li>
+                </ul>
+                <p style="border-left: 2px solid var(--primary); padding-left: 1rem; font-style: normal; color: var(--text-muted); font-size: 0.98rem;">
+                    Focused on replacing manual overheads with highly automated system workflows engineered to remain stable under heavy enterprise scale.
+                </p>
+            </div>
+            <div class="profile-container">
+                <img src="manoj_profile.png" alt="Manoj Motapalukula Profile Image" class="profile-pic">
+            </div>
+        </section>
+
+        <section id="skills">
+            <h3>Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-code"></i> Languages & Core</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Core Java</span>
+                        <span class="skill-tag">SQL / MYSQL</span>
+                        <span class="skill-tag">C Programming</span>
+                        <span class="skill-tag">R Programming</span>
+
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4><i class="fa-brands fa-python"></i> Frameworks & Analytics</h4>
+                    <div class="skill-list">   
+                        <span class="skill-tag">Numpy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Shiny</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Django</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4><i class="fa-solid fa-cloud"></i> Data & Cloud Infrastructure</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">Hadoop Storage</span>
+                        <span class="skill-tag">Hive</span>
+                        <span class="skill-tag">Google BigQuery</span>
+                        <span class="skill-tag">GCP Environment</span>
+                        <span class="skill-tag">Posit Connect</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h3>Professional Experience</h3>
+            <div class="experience-timeline">
+                
+                <div class="job-card">
+                    <div class="job-header-row">
+                        <div class="job-meta-left">
+                            <h4>Associate Engineer</h4>
+                            <span class="company-name">Virtusa</span>
+                        </div>
+                        <div class="job-meta-right">
+                            <span class="job-badge-time">Nov 2025 — Present</span>
+                            <div class="job-location">Hyderabad, Telangana, India</div>
+                        </div>
+                    </div>
+                    <ul class="job-bullets">
+                        <li>Orchestrating architectural software patterns and designing optimized microservices configurations.</li>
+                        <li>Coordinating inside agile project delivery frameworks to ensure continuous solution integration and reliable deployments.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-header-row">
+                        <div class="job-meta-left">
+                            <h4>Associate Engineer</h4>
+                            <span class="company-name">Virtusa</span>
+                        </div>
+                        <div class="job-meta-right">
+                            <span class="job-badge-time">Feb 2025 — Nov 2025</span>
+                            <div class="job-location">Chennai, Tamil Nadu, India</div>
+                        </div>
+                    </div>
+                    <ul class="job-bullets">
+                        <li>Built and launched enterprise web tools via Python and Shiny, yielding an efficiency increase of 20% in system and process automation operations.</li>
+                        <li>Partnered closely across engineering sprint teams to ship clean, reusable, and highly fault-tolerant frontend-to-backend components.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-header-row">
+                        <div class="job-meta-left">
+                            <h4>Project Intern Delivery</h4>
+                            <span class="company-name">Virtusa</span>
+                        </div>
+                        <div class="job-meta-right">
+                            <span class="job-badge-time">Apr 2024 — Jul 2024</span>
+                            <div class="job-location">Chennai, Tamil Nadu, India</div>
+                        </div>
+                    </div>
+                    <ul class="job-bullets">
+                        <li>Contributed to a data-driven ML tool focused on detecting medical insurance claim anomalies, reducing manual inspection overheads by 30%.</li>
+                        <li>Designed user-centric, interactive tracking dashboards using the Flask micro-framework and Pandas matrices.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-header-row">
+                        <div class="job-meta-left">
+                            <h4>Project Intern Delivery</h4>
+                            <span class="company-name">Virtusa</span>
+                        </div>
+                        <div class="job-meta-right">
+                            <span class="job-badge-time">Aug 2023 — Dec 2023</span>
+                            <div class="job-location">Chennai, Tamil Nadu, India</div>
+                        </div>
+                    </div>
+                    <ul class="job-bullets">
+                        <li>Engaged in deep technical onboarding, enterprise application standardization tracks, and core cloud system configuration procedures.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="education">
+            <h3>Education </h3>
+            <div class="credentials-showcase">
+                
+                <div class="media-card">
+                    <img src="iare-logo.jfif" alt="IARE Logo" class="media-card-img-box">
+                    <div class="media-card-content">
+                        <h4>Institute of Aeronautical Engineering (IARE)</h4>
+                        <div class="media-card-sub">Bachelor of Technology — Computer Science & Engineering • 2020 — 2024</div>
+                        <p class="media-card-desc">
+                            Acquired a solid foundation in computational theory, data structures, algorithm optimization, and software design principles. Actively participated in technical development groups and engineered end-to-end applications as part of core curriculum milestones.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="certifications">
+            <h3>Certifications </h3>
+            <div class="credentials-showcase">
+
+                <div class="media-card">
+                    <img src="gcp.jfif" alt="Certifications Badge" class="media-card-img-box">
+                    <div class="media-card-content">
+                        <h4>Google Cloud Certified Associate Cloud Engineer</h4>
+                        <div class="media-card-sub">Google Cloud</div>
+                        <p class="media-card-desc">
+                            Validated technical capabilities through rigorous industry certification paths, focused on robust code formatting, modern object-oriented principles, and database schema construction.
+                        </p>
+                        <div class="cert-inline-tags">
+                            <span class="cert-mini-tag">BigQuery</span>
+                            <span class="cert-mini-tag">Cloud Storage</span>
+                            <span class="cert-mini-tag">IAM</span>
+                            <span class="cert-mini-tag">Cloud Engine</span>
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section id="awards">
+            <h3>Honors & Recognitions</h3>
+            <div class="credentials-showcase">
+
+
+                <div class="media-card">
+                    <img src="jatayu.jfif" alt="Trophy Badge" class="media-card-img-box">
+                    <div class="media-card-content">
+                        <h4>Honors & Recognitions</h4>
+                        <div class="media-card-sub">Competitive Excellence</div>
+                        <p class="media-card-desc">
+                            <strong>Runner Up — Virtusa Jatayu Season 03 Architecture Challenge:</strong> Recognized for exceptional engineering innovation, modular design strategy, and effective agile problem-solving among high-performing technical cohorts.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h3>Start a Conversation</h3>
+            <div class="contact-row">
+                <a href="mailto:manojmotapalukula@gmail.com" class="contact-btn">
+                    <i class="fa-regular fa-envelope"></i> manojmotapalukula@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/manoj-motapalukula" target="_blank" class="contact-btn">
+                    <i class="fa-brands fa-linkedin-in"></i> LinkedIn Profile
+                </a>
+                <div class="contact-btn" style="cursor: default;">
+                    <i class="fa-solid fa-location-dot"></i> Hyderabad, India
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Manoj Motapalukula.</p>
+    </footer>
+
+</body>
+</html>
