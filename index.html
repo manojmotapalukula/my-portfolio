@@ -355,15 +355,86 @@
             transform: translateY(-2px);
         }
 
-        .media-card-img-box {
+        .media-card-visual {
+            position: relative;
             width: 90px;
             height: 90px;
+            flex-shrink: 0;
+        }
+
+        .media-card-img-box {
+            width: 100%;
+            height: 100%;
             border-radius: 10px;
             object-fit: contain;
             background-color: var(--bg-surface);
             border: 1px solid var(--border);
-            flex-shrink: 0;
             padding: 0.5rem;
+            display: block;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .media-card-img-box:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+        }
+
+        .media-card-view-btn {
+            position: absolute;
+            right: 0.35rem;
+            bottom: 0.35rem;
+            border: none;
+            background: rgba(15, 23, 42, 0.8);
+            color: #ffffff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+        }
+
+        .media-card-view-btn:hover {
+            background: rgba(37, 99, 235, 0.95);
+        }
+
+        .image-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.82);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1400;
+            padding: 1.5rem;
+        }
+
+        .image-modal[hidden] {
+            display: none;
+        }
+
+        .image-modal img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            border: none;
+            background: #ffffff;
+            color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            cursor: pointer;
         }
 
         .media-card-content {
@@ -378,9 +449,9 @@
         }
 
         .media-card-sub {
-            font-size: 0.95rem;
+            font-size: 0.75rem;
             color: var(--primary);
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 0.75rem;
         }
 
@@ -482,9 +553,14 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-            .media-card-img-box {
+            .media-card-visual {
                 width: 70px;
                 height: 70px;
+            }
+
+            .media-card-img-box {
+                width: 100%;
+                height: 100%;
             }
             .contact-row {
                 flex-direction: column;
@@ -617,6 +693,8 @@
                         <span class="skill-tag">SQL / MYSQL</span>
                         <span class="skill-tag">C Programming</span>
                         <span class="skill-tag">R Programming</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
 
                     </div>
                 </div>
@@ -723,7 +801,10 @@
             <div class="credentials-showcase">
                 
                 <div class="media-card">
-                    <img src="iare-logo.jfif" alt="IARE Logo" class="media-card-img-box">
+                    <div class="media-card-visual">
+                        <img src="iare-logo.png" alt="IARE Logo" class="media-card-img-box">
+                        <button class="media-card-view-btn" type="button" aria-label="View IARE logo">View</button>
+                    </div>
                     <div class="media-card-content">
                         <h4>Institute of Aeronautical Engineering (IARE)</h4>
                         <div class="media-card-sub">Bachelor of Technology — Computer Science & Engineering • 2020 — 2024</div>
@@ -741,19 +822,107 @@
             <div class="credentials-showcase">
 
                 <div class="media-card">
-                    <img src="gcp.jfif" alt="Certifications Badge" class="media-card-img-box">
+                    <div class="media-card-visual">
+                        <img src="gcp.png" alt="Certifications Badge" class="media-card-img-box">
+                        <button class="media-card-view-btn" type="button" aria-label="View certification badge">View</button>
+                    </div>
                     <div class="media-card-content">
                         <h4>Google Cloud Certified Associate Cloud Engineer</h4>
                         <div class="media-card-sub">Google Cloud</div>
                         <p class="media-card-desc">
-                            Validated technical capabilities through rigorous industry certification paths, focused on robust code formatting, modern object-oriented principles, and database schema construction.
+                            Demonstrated practical cloud engineering skills by configuring, deploying, and managing Google Cloud resources with a focus on IAM, networking, storage, monitoring, and secure infrastructure operations.
                         </p>
                         <div class="cert-inline-tags">
-                            <span class="cert-mini-tag">BigQuery</span>
-                            <span class="cert-mini-tag">Cloud Storage</span>
                             <span class="cert-mini-tag">IAM</span>
-                            <span class="cert-mini-tag">Cloud Engine</span>
-                            
+                            <span class="cert-mini-tag">Compute Engine</span>
+                            <span class="cert-mini-tag">Cloud Storage</span>
+                            <span class="cert-mini-tag">VPC</span>
+                            <span class="cert-mini-tag">Monitoring</span>
+                            <span class="cert-mini-tag">Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="credentials-showcase">
+
+                <div class="media-card">
+                    <div class="media-card-visual">
+                        <img src="pcap.png" alt="Certifications Badge" class="media-card-img-box">
+                        <button class="media-card-view-btn" type="button" aria-label="View certification badge">View</button>
+                    </div>
+                    <div class="media-card-content">
+                        <h4>Python Certified Associate Programmer</h4>
+                        <div class="media-card-sub">Python Institute</div>
+                        <p class="media-card-desc">
+                            Strengthened core Python programming foundations through hands-on work with data types, control flow, functions, collections, modules, exceptions, and file-based application logic.
+                        </p>
+                        <div class="cert-inline-tags">
+                            <span class="cert-mini-tag">Data Types</span>
+                            <span class="cert-mini-tag">Control Flow</span>
+                            <span class="cert-mini-tag">Functions</span>
+                            <span class="cert-mini-tag">Collections</span>
+                            <span class="cert-mini-tag">Exceptions</span>
+                            <span class="cert-mini-tag">File Handling</span>
+                            <span class="cert-mini-tag">OOP</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="credentials-showcase">
+
+                <div class="media-card">
+                    <div class="media-card-visual">
+                        <img src="pcep.png" alt="Certifications Badge" class="media-card-img-box">
+                        <button class="media-card-view-btn" type="button" aria-label="View certification badge">View</button>
+                    </div>
+                    <div class="media-card-content">
+                        <h4>Python Certified Entry-Level Programmer</h4>
+                        <div class="media-card-sub">Python Institute</div>
+                        <p class="media-card-desc">
+                            Built a strong base in beginner-friendly Python concepts, including variables, operators, conditions, loops, strings, lists, and simple program structure.
+                        </p>
+                        <div class="cert-inline-tags">
+                            <span class="cert-mini-tag">Variables</span>
+                            <span class="cert-mini-tag">Operators</span>
+                            <span class="cert-mini-tag">Conditions</span>
+                            <span class="cert-mini-tag">Loops</span>
+                            <span class="cert-mini-tag">Strings</span>
+                            <span class="cert-mini-tag">Lists</span>
+                            <span class="cert-mini-tag">Functions</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="credentials-showcase">
+
+                <div class="media-card">
+                    <div class="media-card-visual">
+                        <img src="sql.png" alt="Certifications Badge" class="media-card-img-box">
+                        <button class="media-card-view-btn" type="button" aria-label="View certification badge">View</button>
+                    </div>
+                    <div class="media-card-content">
+                        <h4>Database Programming with SQL</h4>
+                        <div class="media-card-sub">Oracle Academy</div>
+                        <p class="media-card-desc">
+                            Learned how to design and query relational databases using SQL, covering schema creation, data manipulation, constraints, joins, subqueries, and analytical query patterns.
+                        </p>
+                        <div class="cert-inline-tags">
+                            <span class="cert-mini-tag">DDL</span>
+                            <span class="cert-mini-tag">DML</span>
+                            <span class="cert-mini-tag">DCL</span>
+                            <span class="cert-mini-tag">Constraints</span>
+                            <span class="cert-mini-tag">Joins</span>
+                            <span class="cert-mini-tag">Subqueries</span>
+                            <span class="cert-mini-tag">Window Functions</span>
                         </div>
                     </div>
                 </div>
@@ -768,10 +937,13 @@
 
 
                 <div class="media-card">
-                    <img src="jatayu.jfif" alt="Trophy Badge" class="media-card-img-box">
+                    <div class="media-card-visual">
+                        <img src="jatayu.png" alt="Trophy Badge" class="media-card-img-box">
+                        <button class="media-card-view-btn" type="button" aria-label="View recognition badge">View</button>
+                    </div>
                     <div class="media-card-content">
                         <h4>Honors & Recognitions</h4>
-                        <div class="media-card-sub">Competitive Excellence</div>
+                        <div class="media-card-sub">Virtusa - 2023-2024</div>
                         <p class="media-card-desc">
                             <strong>Runner Up — Virtusa Jatayu Season 03 Architecture Challenge:</strong> Recognized for exceptional engineering innovation, modular design strategy, and effective agile problem-solving among high-performing technical cohorts.
                         </p>
@@ -801,6 +973,12 @@
     <footer>
         <p>&copy; 2026 Manoj Motapalukula.</p>
     </footer>
+
+    <div id="image-modal" class="image-modal" hidden>
+        <button class="image-modal-close" type="button" aria-label="Close preview">&times;</button>
+        <img id="image-modal-img" src="" alt="">
+    </div>
+
     <script>
         (function(){
             const toggle = document.querySelector('.mobile-toggle');
@@ -865,6 +1043,44 @@
                     a.addEventListener('click', ()=> closeSidebar());
                 });
             }
+
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('image-modal-img');
+            const closeModalBtn = document.querySelector('.image-modal-close');
+
+            function openImageModal(imageElement){
+                if(!modal || !modalImage || !imageElement) return;
+                modalImage.src = imageElement.src;
+                modalImage.alt = imageElement.alt || 'Preview';
+                modal.hidden = false;
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeImageModal(){
+                if(!modal) return;
+                modal.hidden = true;
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('.media-card-img-box, .media-card-view-btn').forEach((trigger) => {
+                trigger.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const previewImage = trigger.closest('.media-card-visual')?.querySelector('.media-card-img-box');
+                    if(trigger.classList.contains('media-card-view-btn')){
+                        openImageModal(previewImage);
+                    } else {
+                        openImageModal(trigger);
+                    }
+                });
+            });
+
+            closeModalBtn && closeModalBtn.addEventListener('click', closeImageModal);
+            modal && modal.addEventListener('click', (event) => {
+                if(event.target === modal) closeImageModal();
+            });
+            document.addEventListener('keydown', (event) => {
+                if(event.key === 'Escape' && !modal?.hidden) closeImageModal();
+            });
         })();
     </script>
 </body>
